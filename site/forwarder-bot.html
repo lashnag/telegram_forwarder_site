@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Бот для мониторинга телеграм-каналов">
+    <title>Мониторинг Telegram-каналов в одном месте</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #3d3d3d;
+        }
+        header {
+            background: #0f62fe;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        header p {
+            font-size: 16px;
+            margin: 10px 0 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #0f62fe;
+        }
+        .features, .cta {
+            margin: 20px 0;
+        }
+        .features img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border: 1px solid #e0e0e0;
+        }
+        .features li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .cta {
+            text-align: center;
+        }
+        .cta a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            background: #0f62fe;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .cta a:hover {
+            background: #09428c;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            color: #3d3d3d;
+            border-top: 1px solid #e0e0e0;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Отступ между изображениями */
+        }
+        
+        .bot-preview {
+            width: 400px; /* Задайте нужную ширину */
+            height: auto; /* Сохраняем пропорции изображения */
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <h1>Персональный бот для мониторинга Telegram-каналов</h1>
+        <p>Все выгодные предложения и важные обновления в одном месте — в вашей личке!</p>
+    </header>
+
+    <!-- Основная секция -->
+    <div class="container">
+        <h2>Что умеет наш бот</h2>
+        <ul class="features">
+            <li>Пересылает сообщения из публичных Telegram-каналов прямо в ваш личный чат. Больше не надо постоянно просматривать замьюченные каналы.</li>
+            <li>Идеально подходит для мониторинга скидок на авиабилеты, акций и распродаж (но не только, читай <a href="https://habr.com/ru/companies/alfa/articles/876776/">тут</a> и <a href="https://habr.com/ru/companies/alfa/articles/860416/">тут</a>).</li>
+            <li>Обновления доставляются мгновенно, чтобы вы не пропустили ничего важного и успели купить по самой выгодной цене.</li>
+        </ul>
+
+        <div class="image-container">
+            <img src="bot_preview3.png" alt="Превью работы бота 3" class="bot-preview">
+            <img src="bot_preview2.png" alt="Превью работы бота 2" class="bot-preview">
+            <img src="bot_preview1.png" alt="Превью работы бота 1" class="bot-preview">
+        </div>
+
+        <h2>Как это работает?</h2>
+        <ul class="features">
+            <li>Добавляете интересующие вас публичные каналы в список.</li>
+            <li>Выбираете параметры, по которым ищутся сообщения.</li>
+            <li>Бот автоматически отслеживает новые сообщения в этих каналах.</li>
+            <li>Вы получаете все обновления в свой личный чат!</li>
+        </ul>
+    </div>
+
+    <!-- Призыв к действию -->
+    <div class="cta">
+        <h2>Используйте бота уже сегодня!</h2>
+        <p>Нажмите на кнопку ниже, чтобы начать отслеживать важные каналы прямо сейчас.</p>
+        <a href="https://t.me/TestBackendForwarderBot" target="_blank">Использовать бота бесплатно</a>
+    </div>
+
+    <!-- Подвал -->
+    <footer>
+        <p>© tg: <a href="https://t.me/lashnag" target="_blank">lashnag</a></p>
+    </footer>
+</body>
+</html>
