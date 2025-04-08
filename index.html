@@ -1,159 +1,446 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Бот для мониторинга телеграм-каналов">
-    <title>Мониторинг Telegram-каналов в одном месте</title>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(99839223, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
-        });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/99839223" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16933380040">
-    </script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'AW-16933380040');
-    </script>
+    <title>Document</title>
     <style>
+        html {
+            font-size: 20px;
+            line-height: 32px;
+            font-family: Arial, Helvetica, sans-serif;
+            background-size: 16px 16px;
+            background: #fff;
+            background: linear-gradient(90deg, rgba(109, 182, 196, 1) 0%, rgba(151, 189, 134, 0.9) 50%, rgba(141, 191, 116, 1) 100%);
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
             padding: 0;
-            line-height: 1.6;
-            color: #3d3d3d;
-        }
-        header {
-            background: #0f62fe;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        header h1 {
             margin: 0;
+            display: flex;
+            flex-direction: column;
         }
-        header p {
-            font-size: 16px;
-            margin: 10px 0 0;
+
+        a {
+            color: #0351c1;
         }
+
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
+            padding: 0 32px;
         }
-        h2 {
-            text-align: center;
-            color: #0f62fe;
+
+        .container--column {
+            display: flex;
+            flex-direction: column;
         }
-        .features, .cta {
-            margin: 20px 0;
+
+        .main {
+            flex-grow: 1;
         }
-        .features img {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            margin: 20px auto;
-            display: block;
-            border: 1px solid #e0e0e0;
+
+        .footer,
+        .header {
+            min-height: 120px;
+            box-shadow: 0px -0.5px 2px rgba(0, 0, 0, 0.13);
         }
-        .features li {
-            margin-bottom: 10px;
-            font-size: 16px;
+
+        .navigation__wrap {
+            list-style: none;
+            display: flex;
+            padding: 24px 0;
+            margin: 0;
+            justify-content: space-around;
+            font-size: 28px;
         }
-        .cta {
-            text-align: center;
+
+        .navigation__container {
+            background-color: #fff;
+            border-radius: 0 0 60px 60px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
         }
-        .cta a {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 30px;
-            color: white;
+
+        .navigation__link {
             text-decoration: none;
-            background: #0f62fe;
-            border-radius: 5px;
-            font-size: 18px;
+            color: #00b9f6;
+            cursor: pointer;
+            font-weight: 600;
+            border: 2px solid #00b9f6;
+            border-radius: 8px;
+            padding: 8px;
         }
-        .cta a:hover {
-            background: #09428c;
+
+        .main-header {
+            padding: 48px 32px;
         }
-        footer {
+
+        .main-header__container {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .main-header__title {
+            font-size: 56px;
+            line-height: 70px;
+            font-weight: 700;
+        }
+
+        .main-header__wrap {
+            max-width: 40%;
+            padding-top: 50px;
+        }
+
+        .main-header__image {
+            width: 400px;
+            height: auto;
+        }
+
+        .main-header__text {
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 48px;
+        }
+
+        .section {
+            margin-bottom: 90px;
+        }
+
+        .section__header {
+            font-size: 40px;
+            font-weight: 600;
+            line-height: 56px;
+            margin: 0 auto;
+            margin-bottom: 40px;
+        }
+
+        .info-list,
+        .step-list {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+            display: flex;
+        }
+
+        .info-list__item {
+            padding: 16px 16px 24px;
+            border-radius: 24px;
+            background-color: #fff;
+            flex: 1;
             text-align: center;
-            padding: 20px;
-            background: #f9f9f9;
-            color: #3d3d3d;
-            border-top: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0px -0.5px 2px rgba(0, 0, 0, 0.13);
         }
-        .image-container {
+
+        .info-list__item:not(:first-child) {
+            margin-left: 20px;
+        }
+
+        .info-list__title {
+            margin: 0 0 16px 0;
+            font-size: 24px;
+            line-height: 36px;
+        }
+
+        .info-list__text {
+            margin: 0;
+            flex: 1;
+        }
+
+        .step-list {
+            flex-direction: column;
+        }
+
+        .step-list__item {
             display: flex;
             justify-content: center;
-            gap: 10px; /* Отступ между изображениями */
+            align-items: flex-start;
+            max-width: 80%;
+            margin: 0 auto 60px auto;
+            background-color: #fff;
+            border-radius: 25px;
+            padding: 15px 25px;
+            box-shadow: 0px -0.5px 2px rgba(0, 0, 0, 0.13);
+
         }
-        
-        .bot-preview {
-            width: 400px; /* Задайте нужную ширину */
-            height: auto; /* Сохраняем пропорции изображения */
+
+        .step-list__counter {
+            box-sizing: border-box;
+            border: 3px solid #fd535a;
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 60px;
+            padding: 12px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            color: #fd535a;
+            margin-top: 40px;
+            margin-bottom: 24px;
+            align-self: center;
+            box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.5);
+        }
+
+        .step-list__text {
+            margin: 0;
+            font-size: 24px;
+            line-height: 40px;
+            flex: 1;
+        }
+
+        .congrat {
+            text-align: center;
+            color: #fd535a;
+            font-size: 56px;
+            line-height: 70px;
+        }
+
+        .step-list__text p {
+            margin: 0 0 12px 0;
+        }
+
+        .step-list__text ul,
+        .step-list__text b {
+            margin: 0;
+            padding: 0 0 0 12px;
+            font-size: 20px;
+            line-height: 32px;
+            text-align: left;
+        }
+
+
+        .step-list__text b {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .step-list__image {
+            height: 400px;
+            width: auto;
+            margin-left: 32px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+        }
+
+        .step-list__item:nth-child(2n) .step-list__image {
+            order: -1;
+            margin-left: 0;
+            margin-right: 32px;
+        }
+
+        .step-list__wrap {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .use-info__button {
+            text-decoration: none;
+            display: inline-block;
+            padding: 16px 24px;
+            background-color: #007aff;
+            border-radius: 8px;
+            max-width: 800px;
+            color: #fff;
+            align-self: center;
+            font-size: 24px;
+            line-height: 36px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .use-info__qr {
+            align-self: center;
+        }
+
+        .use-info__text {
+            text-align: center;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: column;
+            margin-top: 64px;
+        }
+
+        .footer__container {
+            flex: 1;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 60px 60px 0 0;
+            height: 100%;
         }
     </style>
 </head>
+
 <body>
-    <!-- Шапка -->
-    <header>
-        <h1>Персональный бот для мониторинга Telegram-каналов</h1>
-        <p>Все выгодные предложения и важные обновления в одном месте — в вашей личке!</p>
-    </header>
-
-    <!-- Основная секция -->
-    <div class="container">
-        <h2>Что умеет наш бот</h2>
-        <ul class="features">
-            <li>Пересылает сообщения из публичных Telegram-каналов прямо в ваш личный чат. Больше не надо постоянно просматривать замьюченные каналы.</li>
-            <li>Идеально подходит для мониторинга скидок на авиабилеты, акций и распродаж (но не только, читай <a href="https://habr.com/ru/companies/alfa/articles/876776/">тут</a>, <a href="https://habr.com/ru/companies/alfa/articles/860416/">тут</a> и <a href="https://habr.com/ru/companies/alfa/articles/889684/">тут</a>).</li>
-            <li>Обновления доставляются мгновенно, чтобы вы не пропустили ничего важного и успели купить по самой выгодной цене.</li>
-        </ul>
-
-        <div class="image-container">
-            <img src="bot_preview3.png" alt="Превью работы бота 3" class="bot-preview">
-            <img src="bot_preview2.png" alt="Превью работы бота 2" class="bot-preview">
-            <img src="bot_preview1.png" alt="Превью работы бота 1" class="bot-preview">
+    <header class="header">
+        <nav class="navigation">
+            <div class="navigation__container container">
+                <ul class="navigation__wrap">
+                    <li class="navigation__item"><a class="navigation__link" href="#about">ЗАЧЕМ</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#work">КАК</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#use">ГДЕ</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="main-header">
+            <div class="container main-header__container">
+                <div class="main-header__wrap">
+                    <h1 class="main-header__title">
+                        Персональный бот для&nbsp;мониторинга Telegram-каналов
+                    </h1>
+                    <span class="main-header__text">
+                        Все выгодные предложения и важные обновления в одном месте — <strong>в вашей личке!</strong>
+                    </span>
+                </div>
+                <img class="main-header__image" src="./left.png" width="600" height="1000" />
+            </div>
         </div>
+    </header>
+    <main class="main">
+        <section id="about" class="section">
+            <div class="container container--column">
+                <h2 class="section__header">Что умеет наш бот</h2>
+                <ul class="info-list">
+                    <li class="info-list__item">
+                        <h3 class="info-list__title">Пересылает сообщения</h3>
+                        <p class="info-list__text">
+                            Из публичных Telegram-каналов в Ваш личный чат.
+                            Больше не надо постоянно просматривать замьюченные каналы.
+                        </p>
+                    </li>
+                    <li class="info-list__item">
+                        <h3 class="info-list__title">Идеально подходит для мониторинга скидок</h3>
+                        <p class="info-list__text">На авиабилеты, акции и распродажи (но не только, читайте <a
+                                href="https://habr.com/ru/companies/alfa/articles/876776/">тут</a>, <a
+                                href="https://habr.com/ru/companies/alfa/articles/860416/">тут</a> и <a
+                                href="https://habr.com/ru/companies/alfa/articles/889684/">тут</a>).
+                        </p>
+                    </li>
+                    <li class="info-list__item">
+                        <h3 class="info-list__title">Мгновенно доставляет обновления</h3>
+                        <p class="info-list__text">
+                            Вы не пропустите ничего важного
+                            и успеете купить по самой выгодной цене.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section id="work" class="section">
+            <div class="container container--column">
+                <h2 class="section__header">Как это работает?</h2>
+                <ul class="step-list">
+                    <li class="step-list__item">
+                        <div class="step-list__wrap">
+                            <span class="step-list__counter">1</span>
+                            <p class="step-list__text">
+                                Используя поиск находите интересующие Вас группы в&nbsp;ТГ (можно воспользоваться <a
+                                    href="https://tgstat.ru/" target="_blank">сервисом</a>)
+                            </p>
+                        </div>
+                        <img src="./step-1.png" class="step-list__image" />
+                    </li>
+                    <li class="step-list__item">
+                        <div class="step-list__wrap">
+                            <span class="step-list__counter">2</span>
+                            <p class="step-list__text">
+                                Переходите в <a href="https://t.me/TestBackendForwarderBot" target="_blank">бота</a> по
+                                ссылке и создаёте подписку через команду <code
+                                    class="command">/create_subscription</code>
+                            </p>
+                        </div>
+                        <img src="./step-2.png" class="step-list__image" />
+                    </li>
+                    <li class="step-list__item">
+                        <div class="step-list__wrap">
+                            <span class="step-list__counter">3</span>
+                            <div class="step-list__text">
+                                <p>
+                                    Используя интерфейс, настраиваете параметры поиска.
+                                </p>
+                                <b>Поиск возможен по:</b>
+                                <ul>
+                                    <li>Ключевым словам</li>
+                                    <li>Максимальной сумму</li>
+                                    <li>Дате в сообщении</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <img src="./step-3.png" class="step-list__image" />
+                    </li>
+                    <li class="step-list__item">
+                        <div class="step-list__wrap">
+                            <span class="step-list__counter">4</span>
+                            <p class="step-list__text">
+                                Для того чтобы сделать поиск более точным - выбирайте сразу несколько условий
+                            </p>
+                            <b>
+                                Для поиска по нескольким ключевым словам, необходимо оформить подписку на каждое
+                                отдельно
+                            </b>
+                        </div>
+                        <img src="./step-4.png" class="step-list__image" />
+                    </li>
+                    <li class="step-list__item">
+                        <div class="step-list__wrap">
+                            <span class="step-list__counter">5</span>
+                            <p class="step-list__text">
+                                Для более гибкого поиска можно воспользоваться неточным поиском через Yandex GPT
+                                (<strong>услуга платная</strong>)
+                            </p>
+                        </div>
+                        <img src="./step-5.png" class="step-list__image" />
+                    </li>
+                    <li class="step-list__item">
+                        <div class="step-list__wrap">
+                            <span class="step-list__counter">6</span>
+                            <p class="step-list__text">
+                                Для оформления подписки нажмите "Подписаться"
+                            </p>
+                        </div>
+                        <img src="./step-6.png" class="step-list__image" />
+                    </li>
+                </ul>
 
-        <h2>Как это работает?</h2>
-        <ul class="features">
-            <li>Добавляете интересующие вас публичные каналы в список.</li>
-            <li>Выбираете параметры, по которым ищутся сообщения.</li>
-            <li>Бот автоматически отслеживает новые сообщения в этих каналах.</li>
-            <li>Вы получаете все обновления в свой личный чат!</li>
-        </ul>
-    </div>
-
-    <!-- Призыв к действию -->
-    <div class="cta">
-        <h2>Используйте бота уже сегодня!</h2>
-        <p>Нажмите на кнопку ниже, чтобы начать отслеживать важные каналы прямо сейчас.</p>
-        <a href="https://t.me/TestBackendForwarderBot" target="_blank">Использовать бота бесплатно</a>
-    </div>
-
-    <!-- Подвал -->
-    <footer>
-        <p>© tg: <a href="https://t.me/lashnag" target="_blank">lashnag</a></p>
+                <strong class="congrat">
+                    Поздравляем! Ваша Подписка Оформлена
+                </strong>
+            </div>
+        </section>
+        <section id="use" class="use-info">
+            <div class="container container--column">
+                <h2 class="section__header">Используйте бота уже сегодня!</h2>
+                <strong class="use-info__text">
+                    Нажмите на кнопку ниже, чтобы начать отслеживать важные каналы прямо сейчас.
+                </strong>
+                <a class="use-info__button" href="https://t.me/TestBackendForwarderBot" target="_blank">
+                    Использовать бота бесплатно
+                </a>
+                <strong class="use-info__text">
+                    Или отсканируйте QR-код.
+                </strong>
+                <a class="use-info__qr" href="https://t.me/TestBackendForwarderBot" target="_blank">
+                    <img src="./qr.png" alt="qr-code">
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer__container">
+            По вопросам обращайтесь <a href="https://t.me/lashnag" target="_blank">&copy;lashnag</a>
+        </div>
     </footer>
 </body>
+
 </html>
