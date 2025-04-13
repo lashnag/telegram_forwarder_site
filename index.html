@@ -27,8 +27,7 @@
             font-size: 20px;
             line-height: 32px;
             font-family: Arial, Helvetica, sans-serif;
-            background-size: 16px 16px;
-            background: #fff;
+            background: rgba(109, 182, 196, 1);
             background: linear-gradient(90deg, rgba(109, 182, 196, 1) 0%, rgba(151, 189, 134, 0.9) 50%, rgba(141, 191, 116, 1) 100%);
         }
 
@@ -59,7 +58,6 @@
         .footer,
         .header {
             min-height: 120px;
-            box-shadow: 0px -0.5px 2px rgba(0, 0, 0, 0.13);
         }
 
         .navigation__wrap {
@@ -173,14 +171,13 @@
         .step-list__item {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             max-width: 80%;
             margin: 0 auto 60px auto;
             background-color: #fff;
             border-radius: 25px;
             padding: 15px 25px;
             box-shadow: 0px -0.5px 2px rgba(0, 0, 0, 0.13);
-
         }
 
         .step-list__counter {
@@ -197,7 +194,6 @@
             width: 80px;
             height: 80px;
             color: #fd535a;
-            margin-top: 40px;
             margin-bottom: 24px;
             align-self: center;
             box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.5);
@@ -295,6 +291,210 @@
             align-items: center;
             border-radius: 60px 60px 0 0;
             height: 100%;
+            box-shadow: 0px -0.5px 2px rgba(0, 0, 0, 0.13);
+        }
+
+        .price {
+            font-size: 20px;
+        }
+
+        .price__wrap {
+            display: inline-flex;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .price__informer {
+            border-radius: 50%;
+            padding: 3px;
+            border: 1px solid #000;
+            display: block;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+            line-height: 20px;
+        }
+
+        .price__tooltip {
+            font-size: 16px;
+            line-height: 24px;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 15px;
+            width: 230px;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.3s;
+            cursor: initial;
+            font-weight: 500;
+            top: 30px;
+            left: -100px;
+            box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .price:hover .price__tooltip {
+            opacity: 1;
+        }
+
+        @media screen and (max-width: 992px) {
+            html {
+                font-size: 16px;
+                line-height: 24px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .footer,
+            .header {
+                min-height: 80px;
+            }
+
+            .navigation__wrap {
+                padding: 8px 0;
+                font-size: 16px;
+            }
+
+            .navigation__container {
+                border-radius: 0 0 20px 20px;
+                padding: 8px 0;
+            }
+
+            .navigation__link {
+                padding: 4px 8px;
+            }
+
+            .main-header {
+                padding: 32px 0;
+                text-align: center;
+            }
+
+            .main-header__container {
+                flex-direction: column;
+            }
+
+            .main-header__title {
+                font-size: 32px;
+                line-height: 44px;
+                font-weight: 700;
+                margin: 0 0 20px 0;
+            }
+
+            .main-header__wrap {
+                max-width: none;
+                padding-top: 0;
+            }
+
+            .main-header__image {
+                width: 60%;
+                margin: 0 auto;
+            }
+
+            .main-header__text {
+                font-size: 20px;
+                line-height: 28px;
+            }
+
+            .info-list {
+                flex-direction: column;
+            }
+
+            .info-list__item:not(:first-child) {
+                margin-top: 16px;
+                margin-left: 0;
+            }
+
+            .section {
+                margin-bottom: 50px;
+            }
+
+            .section__header {
+                font-size: 28px;
+                line-height: 36px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .step-list__item {
+                flex-direction: column;
+                margin: 0;
+                padding: 25px 15px;
+                max-width: none;
+                margin-bottom: 24px;
+            }
+
+            .step-list__item:nth-child(2n) .step-list__image {
+                order: initial;
+                margin-right: 0;
+            }
+
+            .step-list__image {
+                height: auto;
+                width: 100%;
+                margin-left: 0;
+                margin-top: 16px;
+            }
+
+            .step-list__counter {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 16px;
+            }
+
+            .step-list__text {
+                font-size: 20px;
+                line-height: 28px;
+            }
+
+            .step-list__text ul, .step-list__text b {
+                font-size: 16px;
+                line-height: 24px;
+            }
+
+            .price {
+                font-size: 12px;
+            }
+
+            .price__tooltip {
+                left: auto;
+                right: -50px;
+            }
+
+            .price__informer {
+                width: 10px;
+                height: 10px;
+                font-size: 10px;
+                line-height: 10px;
+            }
+
+            .congrat {
+                font-size: 32px;
+                line-height: 48px;
+            }
+
+            .use-info__button {
+                max-width: 100%;
+                width: 100%;
+                box-sizing: border-box;
+                font-size: 18px;
+                text-align: center;
+                padding: 16px 4px;
+                font-size: 20px;
+            }
+
+            .footer {
+                margin-top: 32px;
+            }
+            .footer__container {
+                border-radius: 20px 20px 0 0;
+            }
+        }
+
+        @media screen and (max-width: 1200px) { 
+            .step-list__image {
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -413,9 +613,18 @@
                         <div class="step-list__wrap">
                             <span class="step-list__counter">5</span>
                             <p class="step-list__text">
-                                Для более гибкого поиска можно воспользоваться неточным поиском через Yandex GPT
-                                (<strong>услуга платная</strong>)
+                                Для более гибкого поиска можно воспользоваться неточным поиском через Yandex GPT<br />
+                                <strong class="price">(услуга платная&nbsp;<span class="price__wrap">
+                                        <span class="price__informer">i</span>
+                                        <span class="price__tooltip">
+                                            Цена зависит от количества и длины проверяемых сообщений и поискового
+                                            запроса. 2 рубля за 1000 токенов (слов), но не меньше 1 копейки за проверку
+                                            1 сообщения
+                                        </span>
+                                    </span>)
+                                </strong>
                             </p>
+
                         </div>
                         <img src="./step-5.png" class="step-list__image" />
                     </li>
@@ -431,7 +640,7 @@
                 </ul>
 
                 <strong class="congrat">
-                    Поздравляем! Ваша Подписка Оформлена
+                    Поздравляем!<br />Ваша Подписка Оформлена
                 </strong>
             </div>
         </section>
