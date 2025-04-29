@@ -6,21 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(99839223, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/99839223" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/99839223" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
     <style>
         html {
@@ -105,6 +109,8 @@
         .main-header__wrap {
             max-width: 40%;
             padding-top: 50px;
+            display: flex;
+            flex-direction: column;
         }
 
         .main-header__image {
@@ -118,8 +124,13 @@
             line-height: 48px;
         }
 
+        .main-header__button {
+            margin-top: 16px;
+            align-self: flex-start;
+        }
+
         .section {
-            margin-bottom: 90px;
+            margin-bottom: 60px;
         }
 
         .section__header {
@@ -164,20 +175,27 @@
             flex: 1;
         }
 
-        .step-list {
-            flex-direction: column;
+        .congrat {
+            text-align: center;
+            color: #fd535a;
+            font-size: 56px;
+            line-height: 70px;
+            margin-top: 30px;
         }
 
         .step-list__item {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 80%;
-            margin: 0 auto 60px auto;
+            flex-direction: column;
+            flex: 1;
+            margin: 0;
             background-color: #fff;
             border-radius: 25px;
-            padding: 15px 25px;
+            padding: 15px;
             box-shadow: 0px -0.5px 2px rgba(0, 0, 0, 0.13);
+        }
+
+        .step-list__item:not(:first-child) {
+            margin-left: 20px;
         }
 
         .step-list__counter {
@@ -185,14 +203,14 @@
             border: 3px solid #fd535a;
             font-size: 40px;
             font-weight: 700;
-            line-height: 60px;
+            line-height: 40px;
             padding: 12px;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             color: #fd535a;
             margin-bottom: 24px;
             align-self: center;
@@ -202,15 +220,13 @@
         .step-list__text {
             margin: 0;
             font-size: 24px;
-            line-height: 40px;
+            line-height: 36px;
             flex: 1;
+            font-weight: 500;
         }
 
-        .congrat {
-            text-align: center;
-            color: #fd535a;
-            font-size: 56px;
-            line-height: 70px;
+        .step-list__text a {
+            font-weight: 600;
         }
 
         .step-list__text p {
@@ -233,34 +249,30 @@
         }
 
         .step-list__image {
-            height: 500px;
-            width: auto;
-            margin-left: 32px;
+            height: auto;
+            max-height: 370px;
+            width: 100%;
+            margin-top: auto;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
             border-radius: 15px;
-        }
-
-        .step-list__item:nth-child(2n) .step-list__image {
-            order: -1;
-            margin-left: 0;
-            margin-right: 32px;
         }
 
         .step-list__wrap {
             display: flex;
             flex-direction: column;
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .use-info__button {
+        .main-button {
             text-decoration: none;
             display: inline-block;
+            white-space: nowrap;
             padding: 16px 24px;
             background-color: #007aff;
             border-radius: 8px;
             max-width: 800px;
             color: #fff;
-            align-self: center;
             font-size: 24px;
             line-height: 36px;
             font-weight: 600;
@@ -268,6 +280,10 @@
         }
 
         .use-info__qr {
+            align-self: center;
+        }
+
+        .use-info__button {
             align-self: center;
         }
 
@@ -294,46 +310,8 @@
             box-shadow: 0px -0.5px 2px rgba(0, 0, 0, 0.13);
         }
 
-        .price {
-            font-size: 20px;
-        }
-
-        .price__wrap {
-            display: inline-flex;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .price__informer {
-            border-radius: 50%;
-            padding: 3px;
-            border: 1px solid #000;
-            display: block;
-            width: 20px;
-            height: 20px;
-            font-size: 20px;
-            line-height: 20px;
-        }
-
-        .price__tooltip {
-            font-size: 16px;
-            line-height: 24px;
-            background-color: #fff;
-            border-radius: 20px;
-            padding: 15px;
-            width: 230px;
-            position: absolute;
-            opacity: 0;
-            transition: opacity 0.3s;
-            cursor: initial;
-            font-weight: 500;
-            top: 30px;
-            left: -100px;
-            box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .price:hover .price__tooltip {
-            opacity: 1;
+        .command {
+            white-space: nowrap;
         }
 
         @media screen and (max-width: 992px) {
@@ -350,6 +328,7 @@
             .header {
                 min-height: 80px;
             }
+
 
             .navigation__wrap {
                 padding: 8px 0;
@@ -416,24 +395,10 @@
                 margin-bottom: 20px;
             }
 
-            .step-list__item {
-                flex-direction: column;
-                margin: 0;
-                padding: 25px 15px;
-                max-width: none;
-                margin-bottom: 24px;
-            }
-
-            .step-list__item:nth-child(2n) .step-list__image {
-                order: initial;
-                margin-right: 0;
-            }
-
             .step-list__image {
                 height: auto;
                 max-width: 100%;
-                margin-left: 0;
-                margin-top: 16px;
+                max-height: none;
             }
 
             .step-list__counter {
@@ -447,25 +412,10 @@
                 line-height: 28px;
             }
 
-            .step-list__text ul, .step-list__text b {
+            .step-list__text ul,
+            .step-list__text b {
                 font-size: 16px;
                 line-height: 24px;
-            }
-
-            .price {
-                font-size: 12px;
-            }
-
-            .price__tooltip {
-                left: auto;
-                right: -50px;
-            }
-
-            .price__informer {
-                width: 10px;
-                height: 10px;
-                font-size: 10px;
-                line-height: 10px;
             }
 
             .congrat {
@@ -473,7 +423,7 @@
                 line-height: 48px;
             }
 
-            .use-info__button {
+            .main-button {
                 max-width: 100%;
                 width: 100%;
                 box-sizing: border-box;
@@ -481,19 +431,42 @@
                 text-align: center;
                 padding: 16px 4px;
                 font-size: 20px;
+                white-space: inherit;
             }
 
             .footer {
                 margin-top: 32px;
             }
+
             .footer__container {
                 border-radius: 20px 20px 0 0;
             }
         }
 
-        @media screen and (max-width: 1200px) { 
+        @media screen and (max-width: 1200px) {
+            .step-list {
+                flex-direction: column;
+            }
+
             .step-list__image {
-                max-height: 400px;
+                height: auto;
+                max-height: none;
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .step-list__item:not(:first-child) {
+                margin-left: 0;
+            }
+
+            .step-list__item {
+                flex-direction: column;
+                margin: 0;
+                padding: 25px 15px;
+                max-width: none;
+                margin-bottom: 24px;
+                margin-left: 0;
             }
         }
     </style>
@@ -519,6 +492,10 @@
                     <span class="main-header__text">
                         Все выгодные предложения и важные обновления в одном месте — <strong>в вашей личке!</strong>
                     </span>
+                    <a class="main-header__button main-button" href="https://t.me/TestBackendForwarderBot"
+                        target="_blank">
+                        Попробовать бота прямо&nbsp;сейчас
+                    </a>
                 </div>
                 <img class="main-header__image" src="./left.png" width="600" height="1000" />
             </div>
@@ -562,8 +539,7 @@
                         <div class="step-list__wrap">
                             <span class="step-list__counter">1</span>
                             <p class="step-list__text">
-                                Используя поиск находите интересующие Вас группы в&nbsp;ТГ (можно воспользоваться <a
-                                    href="https://tgstat.ru/" target="_blank">сервисом</a>)
+                                Используя поиск находите интересующие Вас группы в&nbsp;ТГ
                             </p>
                         </div>
                         <img src="./step-1.png" class="step-list__image" />
@@ -586,51 +562,14 @@
                                 <p>
                                     Используя интерфейс, настраиваете параметры поиска.
                                 </p>
-                                <b>Поиск возможен по:</b>
-                                <ul>
-                                    <li>Ключевым словам</li>
-                                    <li>Максимальной сумму</li>
-                                    <li>Дате в сообщении</li>
-                                </ul>
                             </div>
                         </div>
                         <img src="./step-3.png" class="step-list__image" />
                     </li>
+
                     <li class="step-list__item">
                         <div class="step-list__wrap">
                             <span class="step-list__counter">4</span>
-                            <p class="step-list__text">
-                                Для того чтобы сделать поиск более точным - выбирайте сразу несколько условий
-                            </p>
-                            <b>
-                                Для поиска по нескольким ключевым словам, необходимо оформить подписку на каждое
-                                отдельно
-                            </b>
-                        </div>
-                        <img src="./step-4.png" class="step-list__image" />
-                    </li>
-                    <li class="step-list__item">
-                        <div class="step-list__wrap">
-                            <span class="step-list__counter">5</span>
-                            <p class="step-list__text">
-                                Для более гибкого поиска можно воспользоваться неточным поиском через Yandex GPT<br />
-                                <strong class="price">(услуга платная&nbsp;<span class="price__wrap">
-                                        <span class="price__informer">i</span>
-                                        <span class="price__tooltip">
-                                            Цена зависит от количества и длины проверяемых сообщений и поискового
-                                            запроса. 2 рубля за 1000 токенов (слов), но не меньше 1 копейки за проверку
-                                            1 сообщения
-                                        </span>
-                                    </span>)
-                                </strong>
-                            </p>
-
-                        </div>
-                        <img src="./step-5.png" class="step-list__image" />
-                    </li>
-                    <li class="step-list__item">
-                        <div class="step-list__wrap">
-                            <span class="step-list__counter">6</span>
                             <p class="step-list__text">
                                 Для оформления подписки нажмите "Подписаться"
                             </p>
@@ -650,7 +589,7 @@
                 <strong class="use-info__text">
                     Нажмите на кнопку ниже, чтобы начать отслеживать важные каналы прямо сейчас.
                 </strong>
-                <a class="use-info__button" href="https://t.me/TestBackendForwarderBot" target="_blank">
+                <a class="use-info__button main-button" href="https://t.me/TestBackendForwarderBot" target="_blank">
                     Использовать бота бесплатно
                 </a>
                 <strong class="use-info__text">
