@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Forwarder — Personal Channel Monitoring Bot</title>
+    <title>Telegram Forwarder — Бот для мониторинга Telegram-каналов</title>
     <link rel="alternate" hreflang="en" href="https://telegram-forwarder.site/" />
     <link rel="alternate" hreflang="ru" href="https://telegram-forwarder.site/ru/" />
     <link rel="alternate" hreflang="es" href="https://telegram-forwarder.site/es/" />
@@ -15,8 +15,8 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NTD2VJTS');</script>
     <!-- End Google Tag Manager -->
-    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 
 <body>
@@ -27,11 +27,11 @@
         <nav class="navigation">
             <div class="navigation__container container">
                 <ul class="navigation__wrap">
-                    <li class="navigation__item"><a class="navigation__link" href="#about">WHY</a></li>
-                    <li class="navigation__item"><a class="navigation__link" href="#work">HOW</a></li>
-                    <li class="navigation__item"><a class="navigation__link" href="#use">WHERE</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#about">ЗАЧЕМ</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#work">КАК</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#use">ГДЕ</a></li>
                     <li class="navigation__item navigation__lang">
-                        <a class="navigation__link navigation__link--lang" href="/ru/">RU</a>
+                        <a class="navigation__link navigation__link--lang" href="/">EN</a>
                         <a class="navigation__link navigation__link--lang" href="/es/">ES</a>
                     </li>
                 </ul>
@@ -41,14 +41,14 @@
             <div class="container main-header__container">
                 <div class="main-header__wrap">
                     <h1 class="main-header__title">
-                        Personal Bot for&nbsp;Monitoring Telegram Channels
+                        Персональный бот для&nbsp;мониторинга Telegram-каналов
                     </h1>
                     <span class="main-header__text">
-                        All the best deals and important updates in one place — <strong>right in your DMs!</strong>
+                        Все выгодные предложения и важные обновления в одном месте — <strong>в вашей личке!</strong>
                     </span>
                     <a class="main-header__button main-button" href="https://t.me/TestBackendForwarderBot"
                         target="_blank">
-                        Try the bot right&nbsp;now
+                        Попробовать бота прямо&nbsp;сейчас
                     </a>
                 </div>
                 <img class="main-header__image" src="./assets/left.png" width="600" height="1000" alt="Telegram Forwarder Bot" />
@@ -58,26 +58,28 @@
     <main class="main">
         <section id="about" class="section">
             <div class="container container--column">
-                <h2 class="section__header">What our bot can do</h2>
+                <h2 class="section__header">Что умеет наш бот</h2>
                 <ul class="info-list">
                     <li class="info-list__item">
-                        <h3 class="info-list__title">Forwards messages</h3>
+                        <h3 class="info-list__title">Пересылает сообщения</h3>
                         <p class="info-list__text">
-                            From public Telegram channels directly to your personal chat.
-                            No more constantly checking muted channels.
+                            Из публичных Telegram-каналов в Ваш личный чат.
+                            Больше не надо постоянно просматривать замьюченные каналы.
                         </p>
                     </li>
                     <li class="info-list__item">
-                        <h3 class="info-list__title">Perfect for monitoring deals</h3>
-                        <p class="info-list__text">
-                            Flight tickets, sales, and promotions — never miss a bargain again.
+                        <h3 class="info-list__title">Идеально подходит для мониторинга скидок</h3>
+                        <p class="info-list__text">На авиабилеты, акции и распродажи (но не только, читайте <a
+                                href="https://habr.com/ru/companies/alfa/articles/876776/">тут</a>, <a
+                                href="https://habr.com/ru/companies/alfa/articles/860416/">тут</a> и <a
+                                href="https://habr.com/ru/companies/alfa/articles/889684/">тут</a>).
                         </p>
                     </li>
                     <li class="info-list__item">
-                        <h3 class="info-list__title">Delivers updates instantly</h3>
+                        <h3 class="info-list__title">Мгновенно доставляет обновления</h3>
                         <p class="info-list__text">
-                            You won't miss anything important
-                            and will always have time to grab the best price.
+                            Вы не пропустите ничего важного
+                            и успеете купить по самой выгодной цене.
                         </p>
                     </li>
                 </ul>
@@ -85,75 +87,76 @@
         </section>
         <section id="work" class="section">
             <div class="container container--column">
-                <h2 class="section__header">How does it work?</h2>
+                <h2 class="section__header">Как это работает?</h2>
                 <ul class="step-list">
                     <li class="step-list__item">
                         <div class="step-list__wrap">
                             <span class="step-list__counter">1</span>
                             <p class="step-list__text">
-                                Use Telegram search to find the channels you're interested in
+                                Используя поиск находите интересующие Вас группы в&nbsp;ТГ
                             </p>
                         </div>
-                        <img src="./assets/step-1.png" class="step-list__image" alt="Step 1" />
+                        <img src="./assets/step-1.png" class="step-list__image" alt="Шаг 1" />
                     </li>
                     <li class="step-list__item">
                         <div class="step-list__wrap">
                             <span class="step-list__counter">2</span>
                             <p class="step-list__text">
-                                Open the <a href="https://t.me/TestBackendForwarderBot" target="_blank">bot</a> and
-                                create a subscription using the <code class="command">/create_subscription</code> command
+                                Переходите в <a href="https://t.me/TestBackendForwarderBot" target="_blank">бота</a> по
+                                ссылке и создаёте подписку через команду <code
+                                    class="command">/create_subscription</code>
                             </p>
                         </div>
-                        <img src="./assets/step-2.png" class="step-list__image" alt="Step 2" />
+                        <img src="./assets/step-2.png" class="step-list__image" alt="Шаг 2" />
                     </li>
                     <li class="step-list__item">
                         <div class="step-list__wrap">
                             <span class="step-list__counter">3</span>
                             <div class="step-list__text">
                                 <p>
-                                    Configure your search parameters using the bot interface.
+                                    Используя интерфейс, настраиваете параметры поиска.
                                 </p>
                             </div>
                         </div>
-                        <img src="./assets/step-3.png" class="step-list__image" alt="Step 3" />
+                        <img src="./assets/step-3.png" class="step-list__image" alt="Шаг 3" />
                     </li>
                     <li class="step-list__item">
                         <div class="step-list__wrap">
                             <span class="step-list__counter">4</span>
                             <p class="step-list__text">
-                                Press "Subscribe" to activate your subscription
+                                Для оформления подписки нажмите "Подписаться"
                             </p>
                         </div>
-                        <img src="./assets/step-6.png" class="step-list__image" alt="Step 4" />
+                        <img src="./assets/step-6.png" class="step-list__image" alt="Шаг 4" />
                     </li>
                 </ul>
 
                 <strong class="congrat">
-                    Congratulations!<br />Your Subscription is Active
+                    Поздравляем!<br />Ваша Подписка Оформлена
                 </strong>
             </div>
         </section>
         <section id="use" class="use-info">
             <div class="container container--column">
-                <h2 class="section__header">Start using the bot today!</h2>
+                <h2 class="section__header">Используйте бота уже сегодня!</h2>
                 <strong class="use-info__text">
-                    Click the button below to start tracking important channels right now.
+                    Нажмите на кнопку ниже, чтобы начать отслеживать важные каналы прямо сейчас.
                 </strong>
                 <a class="use-info__button main-button" href="https://t.me/TestBackendForwarderBot" target="_blank">
-                    Use the bot for free
+                    Использовать бота бесплатно
                 </a>
                 <strong class="use-info__text">
-                    Or scan the QR code.
+                    Или отсканируйте QR-код.
                 </strong>
                 <a class="use-info__qr" href="https://t.me/TestBackendForwarderBot" target="_blank">
-                    <img src="./assets/qr.png" alt="qr-code">
+                    <img src="../assets/qr.png" alt="QR-код">
                 </a>
             </div>
         </section>
     </main>
     <footer class="footer">
         <div class="container footer__container">
-            For inquiries contact&nbsp;<a href="https://t.me/lashnag" target="_blank">&copy;lashnag</a>
+            По вопросам обращайтесь&nbsp;<a href="https://t.me/lashnag" target="_blank">&copy;lashnag</a>
         </div>
     </footer>
 </body>
