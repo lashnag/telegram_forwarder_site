@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Япония + Корея · 9–22 сентября</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --border: #e2ddd5;
+  --border-hover: #c8c0b4;
+  --text: #1a1714;
+  --muted: #7a7166;
+  --accent: #2a2420;
+  --tag-tokyo-bg: #fff0e6; --tag-tokyo: #8b3a12;
+  --tag-kansai-bg: #fdf3dc; --tag-kansai: #7a5010;
+  --tag-korea-bg: #e8eefe; --tag-korea: #2040a0;
+  --tag-finale-bg: #e4f5ee; --tag-finale: #0a5a38;
+  --budget-bg: #f0faf4; --budget-border: #b8e0c8; --budget-text: #0a5a38;
+  --radius: 12px;
+}
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px 80px;
+}
+
+.container { width: 100%; max-width: 680px; }
+
+/* Header */
+.hd { margin-bottom: 28px; }
+.hd h1 {
+  font-family: 'Literata', Georgia, serif;
+  font-size: 34px; font-weight: 600; line-height: 1.2;
+  color: var(--text); margin-bottom: 8px;
+}
+.badge {
+  display: inline-block; font-size: 12px; font-weight: 500;
+  padding: 5px 12px; border-radius: 20px;
+  background: var(--surface); border: 1.5px solid var(--border); color: var(--muted);
+}
+
+/* Tabs */
+.tabs {
+  display: flex; gap: 0; margin-bottom: 8px;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 40px; padding: 4px; width: fit-content;
+}
+.tab {
+  padding: 9px 20px; border-radius: 36px; border: none;
+  font-size: 13.5px; font-family: 'Inter', sans-serif; font-weight: 500;
+  cursor: pointer; background: transparent; color: var(--muted);
+  transition: all .2s;
+}
+.tab.active { background: var(--text); color: #fff; }
+.tab:hover:not(.active) { background: var(--bg); color: var(--text); }
+
+.hint { font-size: 13px; color: var(--muted); margin: 12px 0 4px; }
+
+/* Section label */
+.section-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px; margin: 20px 0 10px;
+}
+.lbl-tokyo  { background: var(--tag-tokyo-bg);  color: var(--tag-tokyo); }
+.lbl-kansai { background: var(--tag-kansai-bg); color: var(--tag-kansai); }
+.lbl-korea  { background: var(--tag-korea-bg);  color: var(--tag-korea); }
+.lbl-finale { background: var(--tag-finale-bg); color: var(--tag-finale); }
+.lbl-budget { background: #fdf3dc; color: #7a5010; }
+
+/* Day card */
+.day {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 8px; overflow: hidden;
+  transition: border-color .2s;
+}
+.day:hover { border-color: var(--border-hover); }
+.day-hd {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px; cursor: pointer; user-select: none;
+}
+.dd { min-width: 50px; }
+.dn { font-size: 14px; font-weight: 600; color: var(--text); }
+.dw { font-size: 11px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; margin-top: 1px; }
+.icon { font-size: 17px; line-height: 1; flex-shrink: 0; }
+.dtitle { flex: 1; font-size: 15px; font-weight: 500; color: var(--text); }
+.chev {
+  width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--muted); flex-shrink: 0;
+  transition: transform .25s, background .2s;
+}
+.chev.open { transform: rotate(180deg); background: var(--bg); }
+.day-bd {
+  display: none; padding: 0 20px 20px;
+  border-top: 1.5px solid var(--border);
+}
+.day-bd.open { display: block; }
+.day-desc { font-size: 14px; line-height: 1.7; color: var(--muted); padding: 14px 0 10px; }
+
+/* Attraction */
+.attr { margin-bottom: 20px; }
+.attr:last-child { margin-bottom: 0; }
+.attr + .attr { padding-top: 16px; border-top: 1px dashed var(--border); }
+.aname { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+.adesc { font-size: 13px; line-height: 1.65; color: var(--muted); margin-bottom: 10px; }
+.ticket {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; font-weight: 500; color: #7a5010;
+  background: #fdf3dc; border: 1px solid #f0d890;
+  padding: 3px 9px; border-radius: 12px; margin-bottom: 8px;
+}
+.ticket-free { color: #0a5a38; background: #e4f5ee; border-color: #b8e0c8; }
+
+/* Images */
+.imgs { display: flex; gap: 8px; flex-wrap: wrap; }
+.imgs img {
+  width: 220px; height: 148px; object-fit: cover;
+  border-radius: 8px; border: 1.5px solid var(--border); display: block;
+}
+
+/* ============ BUDGET SECTION ============ */
+.budget-section {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; margin-bottom: 8px;
+}
+.budget-hd {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 20px; cursor: pointer; user-select: none;
+}
+.budget-title { flex: 1; font-size: 15px; font-weight: 500; color: var(--text); }
+.budget-body { display: none; padding: 0 20px 20px; border-top: 1.5px solid var(--border); }
+.budget-body.open { display: block; }
+
+.budget-intro { font-size: 13px; color: var(--muted); padding: 14px 0 16px; line-height: 1.6; }
+
+.b-group { margin-bottom: 20px; }
+.b-group-title {
+  font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 10px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.b-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 7px 0; border-bottom: 1px dashed var(--border); gap: 8px;
+}
+.b-row:last-child { border-bottom: none; }
+.b-label { font-size: 13px; color: var(--text); flex: 1; min-width: 0; }
+.b-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.b-amt { font-size: 13.5px; font-weight: 600; color: var(--text); white-space: nowrap; }
+.b-amt-muted { font-size: 12px; color: var(--muted); font-weight: 400; }
+
+/* 3-column rows */
+.b-row3 {
+  display: flex; align-items: baseline; gap: 4px;
+  padding: 7px 0; border-bottom: 1px dashed var(--border);
+}
+.b-row3:last-child { border-bottom: none; }
+.b-row3 .b-label { flex: 1; min-width: 0; font-size: 13px; color: var(--text); }
+.b-col { font-size: 13px; font-weight: 500; white-space: nowrap; text-align: right; }
+.b-col.solo  { width: 90px;  color: #8b3a12; }
+.b-col.duo   { width: 100px; color: #2040a0; }
+.b-col.total { width: 100px; color: var(--muted); }
+.b-row3.b-sum .b-label { font-weight: 600; }
+.b-row3.b-sum .b-col   { font-weight: 700; font-size: 13.5px; }
+
+.budget-total {
+  background: #f0faf4; border: 1.5px solid #b8e0c8;
+  border-radius: 10px; padding: 16px 18px; margin-top: 16px;
+}
+.budget-total-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 8px;
+}
+.budget-total-row:last-child { margin-bottom: 0; }
+.bt-label { font-size: 14px; color: #0a5a38; font-weight: 500; }
+.bt-amt { font-size: 18px; font-weight: 600; color: #0a5a38; }
+.bt-sub { font-size: 12px; color: #2a7a50; }
+.budget-note {
+  font-size: 12px; color: var(--muted); margin-top: 14px;
+  padding-top: 12px; border-top: 1px dashed var(--border); line-height: 1.6;
+}
+
+/* Footer */
+.footer-note {
+  font-size: 12px; color: var(--muted); margin-top: 24px;
+  padding-top: 16px; border-top: 1.5px solid var(--border);
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hd">
+  <h1>Япония + Корея<br>9–22 сентября</h1>
+  <span class="badge">13 ночей · виза double-entry</span>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab(1,this)">Вариант 1 · без Нагои</button>
+  <button class="tab" onclick="switchTab(2,this)">Вариант 2 · с Нагоей</button>
+</div>
+<p class="hint">👆 нажми на день, чтобы раскрыть подробности</p>
+
+<!-- ===== ВАРИАНТ 1 ===== -->
+<div id="v1">
+
+<span class="section-label lbl-tokyo">🗼 Токио</span>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">9 сен</div><div class="dw">вт</div></div>
+    <span class="icon">✈️</span>
+    <div class="dtitle">Прилёт в Токио · въезд №1</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Прилёт утром, заселение. День без перегруза — разница с Москвой +6 ч. Прогулка по Сибуя и Синдзюку: неон, толпа, первое «вау». Ужин рядом с отелем.</p>
+    <div class="attr">
+      <div class="aname">Перекрёсток Сибуя · Scramble Crossing</div>
+      <span class="ticket ticket-free">🎟 Вход свободный</span>
+      <div class="adesc">✨ Самый оживлённый пешеходный переход в мире — до 3000 человек за один зелёный сигнал. Лучший вид сверху — из кафе Starbucks у станции.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/19658291/pexels-photo-19658291.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Shibuya Crossing">
+        <img src="https://images.pexels.com/photos/27134443/pexels-photo-27134443.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Shibuya aerial">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Синдзюку · «Золотой Гай»</div>
+      <span class="ticket ticket-free">🎟 Вход свободный · бары от 500–1000 ¥</span>
+      <div class="adesc">✨ Квартал небоскрёбов и ночных огней. Узкие улочки «Золотого Гая» — крошечные бары на 5–6 человек с невероятной атмосферой.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/30961827/pexels-photo-30961827.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Tokyo night street">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">10 сен</div><div class="dw">ср</div></div>
+    <div class="dtitle">Токио, полный день</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Полный день на главные токийские места. Начните с рассвета в Асакусе — тогда храм особенно красив и туристов почти нет.</p>
+    <div class="attr">
+      <div class="aname">Храм Сэнсо-дзи · Асакуса</div>
+      <span class="ticket ticket-free">🎟 Вход свободный (6:00–17:00)</span>
+      <div class="adesc">✨ Старейший храм Токио (628 г.), посвящён богине Каннон. Знаменитые ворота Каминаримон с огромным красным фонарём — символ всего Токио. Торговая улица Накамисэ — 200 м лавочек с сувенирами.</div>
+      <div class="imgs">
+        <img src="https://cdn.pixabay.com/photo/2017/02/02/10/08/sensoji-2032400_640.jpg" alt="Senso-ji Temple">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Tokyo Skytree</div>
+      <span class="ticket">🎟 Смотровая: ~2100 ¥ (~1400 ₽)</span>
+      <div class="adesc">✨ 634 м — высочайшая башня Японии. Смотровые площадки на 350 и 450 м. В ясный день виден Фудзи. Рядом с Асакусой — удобно совместить.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/30703814/pexels-photo-30703814.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Tokyo Skytree">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Акихабара</div>
+      <span class="ticket ticket-free">🎟 Вход свободный · шопинг на ваш выбор</span>
+      <div class="adesc">✨ «Электрический город» — мекка аниме, манги, электроники и игр. Многоэтажные магазины, аркады и тематические кафе.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/3532924/pexels-photo-3532924.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Tokyo street night">
+      </div>
+    </div>
+  </div>
+</div>
+
+<span class="section-label lbl-kansai">🍜 Кансай</span>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">11 сен</div><div class="dw">чт</div></div>
+    <span class="icon">🚅</span>
+    <div class="dtitle">Синкансэн Токио → Киото</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Пересадка на синкансэн «Нодзоми» — ~2ч 15мин. Заселение и вечерняя прогулка по Гиону.</p>
+    <div class="attr">
+      <div class="aname">Гион · Квартал гейш</div>
+      <span class="ticket ticket-free">🎟 Прогулка свободная</span>
+      <div class="adesc">✨ Исторический район с деревянными чайными домами XVII–XIX вв. Вечером у Хатидзакан-Миякодзи есть шанс встретить настоящую майко.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/31100413/pexels-photo-31100413.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Geisha Kyoto night">
+        <img src="https://images.pexels.com/photos/31100390/pexels-photo-31100390.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Gion shopfront night">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">12 сен</div><div class="dw">пт</div></div>
+    <div class="dtitle">Киото — храмы</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Западный Киото и главные святыни. Начните с Арасиямы — ранние часы в бамбуковой роще до приезда туристов.</p>
+    <div class="attr">
+      <div class="aname">Фусими Инари</div>
+      <span class="ticket ticket-free">🎟 Вход свободный (открыт круглосуточно)</span>
+      <div class="adesc">✨ Тысячи оранжевых ворот тории, ведущих на гору Инари. 4 км тропы вверх — до вершины и обратно ~2 ч. Лисы-посланники бога риса.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/5589991/pexels-photo-5589991.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Fushimi Inari">
+        <img src="https://images.pexels.com/photos/16226514/pexels-photo-16226514.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Fushimi Inari torii">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Бамбуковая роща Арасияма</div>
+      <span class="ticket ticket-free">🎟 Вход свободный</span>
+      <div class="adesc">✨ Знаменитая роща высоченного бамбука — 500 м аллеи с мистическим освещением. Рядом храм Тэнрюдзи (500 ¥) с садом и рекой Оигава.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/18848739/pexels-photo-18848739.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Arashiyama Bamboo">
+        <img src="https://images.pexels.com/photos/52706/pexels-photo-52706.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Bamboo Forest">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Кинкакудзи · Золотой павильон</div>
+      <span class="ticket">🎟 500 ¥ (~350 ₽)</span>
+      <div class="adesc">✨ Покрытый сусальным золотом буддийский храм XIV в. над прудом Кёкоти. Один из главных символов Японии.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/356629/pexels-photo-356629.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Kinkakuji">
+        <img src="https://images.pexels.com/photos/3625108/pexels-photo-3625108.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Kinkakuji pavilion">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">13 сен</div><div class="dw">сб</div></div>
+    <div class="dtitle">Киото или Нара</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Нара в 45 минутах от Киото — отличный однодневный выезд. Или добивайте Киото: Серебряный павильон, философская тропа, Нисики-маркет.</p>
+    <div class="attr">
+      <div class="aname">Нара · Олени и Тодайдзи</div>
+      <span class="ticket">🎟 Тодайдзи: 600 ¥ (~420 ₽) · олени — бесплатно</span>
+      <div class="adesc">✨ Более 1200 свободных оленей ходят прямо по городу. Тодайдзи — самое большое деревянное здание в мире (728 г.) с бронзовым Буддой 15 м.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/3408348/pexels-photo-3408348.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Nara deer">
+        <img src="https://images.pexels.com/photos/15845939/pexels-photo-15845939.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Nara deer torii">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Гинкакудзи · Философская тропа</div>
+      <span class="ticket">🎟 Гинкакудзи: 500 ¥ (~350 ₽) · тропа свободна</span>
+      <div class="adesc">✨ «Серебряный павильон» с дзен-садом и 2 км прогулочного канала с сакурами. Весной — розовое отражение в воде.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/30192982/pexels-photo-30192982.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Kyoto night lights">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">14 сен</div><div class="dw">вс</div></div>
+    <div class="dtitle">Осака</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Осака — кулинарная столица Японии. Замок, уличная еда и ночная жизнь Синсайбаши.</p>
+    <div class="attr">
+      <div class="aname">Замок Осака</div>
+      <span class="ticket">🎟 Музей внутри: 600 ¥ (~420 ₽) · парк свободен</span>
+      <div class="adesc">✨ Замок XVI в., символ эпохи объединения Японии. Внутри — 8-этажный музей истории. Парк вокруг особенно красив в сезон цветения.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/4058530/pexels-photo-4058530.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Osaka Castle">
+        <img src="https://images.pexels.com/photos/5537711/pexels-photo-5537711.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Osaka Castle sunset">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Дотомбори</div>
+      <span class="ticket ticket-free">🎟 Вход свободный · стрит-фуд от 200 ¥</span>
+      <div class="adesc">✨ Главная улица Осаки: неоновые вывески, каналы и еда. Знаменитый бегущий человечек Глико. Попробуйте такояки и окономияки прямо на улице.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/30802662/pexels-photo-30802662.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Dotonbori">
+        <img src="https://images.pexels.com/photos/34438939/pexels-photo-34438939.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Dotonbori night">
+      </div>
+    </div>
+  </div>
+</div>
+
+<span class="section-label lbl-korea">🇰🇷 Корея</span>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">15 сен</div><div class="dw">пн</div></div>
+    <span class="icon">✈️</span>
+    <div class="dtitle">KIX → Сеул · выезд из Японии</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Рейс из аэропорта Кансай ~1ч 40мин. Прилёт в Инчхон, заселение, первый вечер в Сеуле.</p>
+    <div class="attr">
+      <div class="aname">Мёндон · Первый вечер</div>
+      <span class="ticket ticket-free">🎟 Вход свободный · стрит-фуд и шопинг</span>
+      <div class="adesc">✨ Главная торговая улица Сеула: корейская косметика K-beauty, уличная еда и модные бренды. Попробуйте хотток (сладкий блинчик) и тток-ккочи (острые рисовые палочки).</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/28494398/pexels-photo-28494398.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Seoul street">
+        <img src="https://images.pexels.com/photos/16395526/pexels-photo-16395526.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Seoul night">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">16 сен</div><div class="dw">вт</div></div>
+    <div class="dtitle">Сеул — дворцы</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Дворцы эпохи Чосон, деревня ханок и вид на современный мегаполис. Посетите в ханбок — вход в дворцы бесплатный!</p>
+    <div class="attr">
+      <div class="aname">Кёнбоккун · главный дворец</div>
+      <span class="ticket">🎟 3000 вон (~200 ₽) · в ханбок — бесплатно</span>
+      <div class="adesc">✨ Главный дворец династии Чосон (1395 г.). 330 строений на фоне горы Пукхансан. Смена почётного королевского караула в 10:00 и 14:00.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/11870589/pexels-photo-11870589.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Gyeongbokgung Palace">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Букчон Ханок · деревня традиционных домов</div>
+      <span class="ticket ticket-free">🎟 Прогулка свободная</span>
+      <div class="adesc">✨ 900-летняя деревня с сотнями традиционных домов ханок на холмах. Лучший вид — с верхней смотровой точки рано утром до туристов.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/36942555/pexels-photo-36942555.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Bukchon Hanok">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Башня Намсан · N Seoul Tower</div>
+      <span class="ticket">🎟 Смотровая: 16 000 вон (~1100 ₽) · подъём на фуникулёре 11 000 вон</span>
+      <div class="adesc">✨ Смотровая башня на горе Намсан, 479 м над уровнем моря. Замки влюблённых на ограде. Потрясающая панорама Сеула в ночных огнях.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/19271577/pexels-photo-19271577.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Seoul street view">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">17 сен</div><div class="dw">ср</div></div>
+    <div class="dtitle">ДМЗ + современный Сеул</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Утром — тур на Демилитаризованную зону (бронировать заранее!), вечером — молодёжный Хондэ.</p>
+    <div class="attr">
+      <div class="aname">Тур на ДМЗ из Сеула</div>
+      <span class="ticket">🎟 Тур + транспорт: ~50–70 $ (~4500–6300 ₽) · бронировать за 2–3 дня</span>
+      <div class="adesc">✨ Граница двух Корей — самая охраняемая в мире. Смотровая площадка Дора, туннель №3, деревня Пханмунджом. Автобусный тур из Сеула ~6–8 ч с гидом на английском. Без тура проехать невозможно — обязательна организованная группа.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/29831546/pexels-photo-29831546.jpeg?auto=compress&cs=tinysrgb&w=640" alt="DMZ border area">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Хондэ · Хонгдэ</div>
+      <span class="ticket ticket-free">🎟 Вход свободный · бары и клубы от 10 000 вон</span>
+      <div class="adesc">✨ Молодёжный квартал у университета Хонгик: стрит-арт, инди-музыка, концерты, клубы и бесчисленные кафе. Лучший вечер в Сеуле.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/29188029/pexels-photo-29188029.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Korea city night">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">18 сен</div><div class="dw">чт</div></div>
+    <span class="icon">✈️</span>
+    <div class="dtitle">Сеул → Токио · въезд №2</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Возвращение в Японию. Второй въезд по визе double-entry. Заселение в Токио, отдых после перелёта.</p>
+    <div class="attr">
+      <div class="aname">Утро: последний шопинг в Мёндоне или Намдэмуне</div>
+      <span class="ticket ticket-free">🎟 Рынки свободны</span>
+      <div class="adesc">✨ Намдэмун — старейший рынок Сеула (крытый): специи, морепродукты, одежда. Идеально для сувениров перед отлётом в Японию. Рейс лучше брать вечерний.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/23106807/pexels-photo-23106807.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Seoul library">
+      </div>
+    </div>
+  </div>
+</div>
+
+<span class="section-label lbl-finale">🌿 Токио, финал</span>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">19 сен</div><div class="dw">пт</div></div>
+    <div class="dtitle">Токио — стиль жизни</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Токио глубже: дизайн, мода, парки, кофе. Разные районы — разные вселенные.</p>
+    <div class="attr">
+      <div class="aname">Харадзюку · Такэсита-дори</div>
+      <span class="ticket ticket-free">🎟 Вход свободный</span>
+      <div class="adesc">✨ Мировая столица молодёжной моды и субкультур. Улица Такэсита — карнавал ярких стилей, сладкий стрит-фуд (крепы, сахарная вата). Всё это в пяти минутах от парка Ёёги.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/3532924/pexels-photo-3532924.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Tokyo colorful street">
+        <img src="https://images.pexels.com/photos/30961827/pexels-photo-30961827.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Tokyo night life">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Омотэсандо · Shibuya Sky</div>
+      <span class="ticket">🎟 Shibuya Sky: 2000 ¥ (~1400 ₽) · Омотэсандо — свободен</span>
+      <div class="adesc">✨ Омотэсандо — токийские Елисейские поля: флагманы Louis Vuitton, Dior, Tod's в зданиях от звёздных архитекторов. Рядом Shibuya Sky — смотровая 229 м с панорамой 360°.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/29502545/pexels-photo-29502545.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Tokyo skyline">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">20 сен</div><div class="dw">сб</div></div>
+    <div class="dtitle">Хаконэ / вид на Фудзи</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Однодневный выезд из Токио. Горный курорт с видом на Фудзи, онсэны и кальдерное озеро Асинако.</p>
+    <div class="attr">
+      <div class="aname">Однодневный тур в Хаконэ с Фудзи</div>
+      <span class="ticket">🎟 Hakone Free Pass (2 дня): ~6500 ¥ (~4500 ₽) · включает автобусы, фуникулёр, паром на озере · экскурсия с гидом ~50–80 $</span>
+      <div class="adesc">✨ Хаконэ Free Pass покрывает большинство транспорта в регионе. В ясный сентябрьский день с озера Асиноко открывается классический вид: красные ворота тории и Фудзи на горизонте. Онсэн в рёкане — идеальное завершение дня.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/30091614/pexels-photo-30091614.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Mount Fuji Hakone">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">21 сен</div><div class="dw">вс</div></div>
+    <div class="dtitle">Камакура</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Однодневный выезд — 1 ч электричкой от Токио. Морской город с гигантским Буддой, храмами и пляжем.</p>
+    <div class="attr">
+      <div class="aname">Великий Будда · Котоку-ин</div>
+      <span class="ticket">🎟 300 ¥ (~200 ₽) · внутрь Будды +20 ¥</span>
+      <div class="adesc">✨ Бронзовый Будда 13,35 м — один из главных символов Японии (1252 г.). Внутрь можно войти через небольшую дверцу. Окружён тихим парком среди холмов.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/33390904/pexels-photo-33390904.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Kamakura Great Buddha">
+        <img src="https://images.pexels.com/photos/15139149/pexels-photo-15139149.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Buddha statue Japan">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Цуругаока Хатимангу</div>
+      <span class="ticket ticket-free">🎟 Вход свободный (музей 200 ¥)</span>
+      <div class="adesc">✨ Главный синтоистский храм Камакуры, основан в 1063 г. Длинная аллея из вишен, лотосовые пруды. Символ самурайского духа.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/9297099/pexels-photo-9297099.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Kamakura temple">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">22 сен</div><div class="dw">пн</div></div>
+    <span class="icon">✈️</span>
+    <div class="dtitle">Вылет домой утром</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Ранний выезд в аэропорт. Нарита или Ханэда — смотрите по билету. Не забудьте tax free — возврат налога прямо в аэропорту при предъявлении паспорта.</p>
+  </div>
+</div>
+
+<!-- БЮДЖЕТ V1 -->
+<span class="section-label lbl-budget">💴 Расчёт расходов</span>
+<div class="budget-section">
+  <div class="budget-hd" onclick="togBudget(this)">
+    <div class="dd"><div class="dn" style="font-size:20px">💴</div></div>
+    <div class="budget-title">Примерный бюджет · Вариант 1</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="budget-body">
+    <p class="budget-intro">Курс: <strong>1 $ = 73 ₽</strong>, 1 ¥ ≈ 0.7 ₽. Отель ~50 $/ночь на номер, питание ~21 $/день на человека, 14 дней.</p>
+
+    <!-- col headers -->
+    <div style="display:flex;gap:4px;padding:8px 0 4px;border-bottom:1.5px solid var(--border);margin-bottom:8px">
+      <div style="flex:1;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase">Статья</div>
+      <div style="width:90px;font-size:11px;font-weight:600;color:#8b3a12;text-align:right;letter-spacing:.03em">Один</div>
+      <div style="width:100px;font-size:11px;font-weight:600;color:#2040a0;text-align:right;letter-spacing:.03em">Двое/чел.</div>
+      <div style="width:100px;font-size:11px;font-weight:600;color:var(--muted);text-align:right;letter-spacing:.03em">Двое итого</div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">✈️ Перелёты</div>
+      <div class="b-row3">
+        <div class="b-label">Москва → Токио<div class="b-sub">53 000 ₽ ÷ 2 = на чел.</div></div>
+        <div class="b-col solo">26 500 ₽</div>
+        <div class="b-col duo">26 500 ₽</div>
+        <div class="b-col total">53 000 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Осака → Сеул (KIX→ICN)</div>
+        <div class="b-col solo">10 000 ₽</div>
+        <div class="b-col duo">10 000 ₽</div>
+        <div class="b-col total">20 000 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Сеул → Токио (ICN→TYO)</div>
+        <div class="b-col solo">8 000 ₽</div>
+        <div class="b-col duo">8 000 ₽</div>
+        <div class="b-col total">16 000 ₽</div>
+      </div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">Итого перелёты</div>
+        <div class="b-col solo">44 500 ₽</div>
+        <div class="b-col duo">44 500 ₽</div>
+        <div class="b-col total">89 000 ₽</div>
+      </div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">🏨 Отели · 13 ночей · ~50 $/ночь</div>
+      <div class="b-row3">
+        <div class="b-label">Токио 2 ночи</div>
+        <div class="b-col solo">7 300 ₽</div>
+        <div class="b-col duo">3 650 ₽</div>
+        <div class="b-col total">7 300 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Киото 3 ночи</div>
+        <div class="b-col solo">10 950 ₽</div>
+        <div class="b-col duo">5 475 ₽</div>
+        <div class="b-col total">10 950 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Осака 1 ночь</div>
+        <div class="b-col solo">3 650 ₽</div>
+        <div class="b-col duo">1 825 ₽</div>
+        <div class="b-col total">3 650 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Сеул 3 ночи</div>
+        <div class="b-col solo">10 950 ₽</div>
+        <div class="b-col duo">5 475 ₽</div>
+        <div class="b-col total">10 950 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Токио финал 4 ночи</div>
+        <div class="b-col solo">14 600 ₽</div>
+        <div class="b-col duo">7 300 ₽</div>
+        <div class="b-col total">14 600 ₽</div>
+      </div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">Итого отели</div>
+        <div class="b-col solo">47 450 ₽</div>
+        <div class="b-col duo">23 725 ₽</div>
+        <div class="b-col total">47 450 ₽</div>
+      </div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">🍱 Питание · 21 $/день · 14 дней</div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">21 $ × 73 ₽ × 14 дней</div>
+        <div class="b-col solo">21 462 ₽</div>
+        <div class="b-col duo">21 462 ₽</div>
+        <div class="b-col total">42 924 ₽</div>
+      </div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">🚆 Транспорт на месте (на чел.)</div>
+      <div class="b-row3">
+        <div class="b-label">Синкансэн Токио→Киото<div class="b-sub">~14 000 ¥</div></div>
+        <div class="b-col solo">9 800 ₽</div>
+        <div class="b-col duo">9 800 ₽</div>
+        <div class="b-col total">19 600 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Метро+автобусы Япония<div class="b-sub">~1 500 ¥/день × 12 дн.</div></div>
+        <div class="b-col solo">12 600 ₽</div>
+        <div class="b-col duo">12 600 ₽</div>
+        <div class="b-col total">25 200 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Метро Сеул<div class="b-sub">~3 000 вон/день × 3 дн.</div></div>
+        <div class="b-col solo">590 ₽</div>
+        <div class="b-col duo">590 ₽</div>
+        <div class="b-col total">1 180 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Hakone Free Pass<div class="b-sub">~6 500 ¥</div></div>
+        <div class="b-col solo">4 550 ₽</div>
+        <div class="b-col duo">4 550 ₽</div>
+        <div class="b-col total">9 100 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Аэроэкспресс (Нарита/Ханэда)<div class="b-sub">~3 000 ¥</div></div>
+        <div class="b-col solo">2 100 ₽</div>
+        <div class="b-col duo">2 100 ₽</div>
+        <div class="b-col total">4 200 ₽</div>
+      </div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">Итого транспорт</div>
+        <div class="b-col solo">29 640 ₽</div>
+        <div class="b-col duo">29 640 ₽</div>
+        <div class="b-col total">59 280 ₽</div>
+      </div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">🎟 Достопримечательности (на чел.)</div>
+      <div class="b-row3">
+        <div class="b-label">Tokyo Skytree (~2 100 ¥)</div>
+        <div class="b-col solo">1 470 ₽</div>
+        <div class="b-col duo">1 470 ₽</div>
+        <div class="b-col total">2 940 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Кинкакудзи (500 ¥)</div>
+        <div class="b-col solo">350 ₽</div>
+        <div class="b-col duo">350 ₽</div>
+        <div class="b-col total">700 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Тодайдзи Нара (600 ¥)</div>
+        <div class="b-col solo">420 ₽</div>
+        <div class="b-col duo">420 ₽</div>
+        <div class="b-col total">840 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Замок Осака (600 ¥)</div>
+        <div class="b-col solo">420 ₽</div>
+        <div class="b-col duo">420 ₽</div>
+        <div class="b-col total">840 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Кёнбоккун (3 000 вон)</div>
+        <div class="b-col solo">195 ₽</div>
+        <div class="b-col duo">195 ₽</div>
+        <div class="b-col total">390 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Намсан (16 000 вон)</div>
+        <div class="b-col solo">1 040 ₽</div>
+        <div class="b-col duo">1 040 ₽</div>
+        <div class="b-col total">2 080 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Тур ДМЗ (~60 $)</div>
+        <div class="b-col solo">4 380 ₽</div>
+        <div class="b-col duo">4 380 ₽</div>
+        <div class="b-col total">8 760 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Будда Камакура (300 ¥)</div>
+        <div class="b-col solo">210 ₽</div>
+        <div class="b-col duo">210 ₽</div>
+        <div class="b-col total">420 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Shibuya Sky (~2 000 ¥)</div>
+        <div class="b-col solo">1 400 ₽</div>
+        <div class="b-col duo">1 400 ₽</div>
+        <div class="b-col total">2 800 ₽</div>
+      </div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">Итого достопримечательности</div>
+        <div class="b-col solo">9 885 ₽</div>
+        <div class="b-col duo">9 885 ₽</div>
+        <div class="b-col total">19 770 ₽</div>
+      </div>
+    </div>
+
+    <div class="budget-total">
+      <div style="display:flex;gap:4px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #b8e0c8">
+        <div style="flex:1;font-size:12px;color:#2a7a50;font-weight:500">Итого</div>
+        <div style="width:90px;font-size:11px;color:#8b3a12;text-align:right;font-weight:500">Один</div>
+        <div style="width:100px;font-size:11px;color:#2040a0;text-align:right;font-weight:500">Двое/чел.</div>
+        <div style="width:100px;font-size:11px;color:#0a5a38;text-align:right;font-weight:500">Двое итого</div>
+      </div>
+      <div style="display:flex;gap:4px;align-items:baseline">
+        <div style="flex:1;font-size:13px;color:#0a5a38;font-weight:500">Все расходы</div>
+        <div style="width:90px;font-size:19px;font-weight:700;color:#8b3a12;text-align:right">152 000 ₽</div>
+        <div style="width:100px;font-size:19px;font-weight:700;color:#2040a0;text-align:right">129 000 ₽</div>
+        <div style="width:100px;font-size:19px;font-weight:700;color:#0a5a38;text-align:right">257 000 ₽</div>
+      </div>
+    </div>
+    <p class="budget-note">⚠️ Не включено: шопинг и сувениры, алкоголь, онсэн в Хаконэ (~3 000 ¥), страховка (~3 000–5 000 ₽), виза. Питание — средний уровень (рамен, донбури, кафе); ужины в ресторанах увеличат сумму. Двое/чел. = отель пополам, перелёты раздельно.</p>
+  </div>
+</div>
+
+<p class="footer-note">Ночёвки: Токио ×2 · Киото ×3 · Осака ×1 · Сеул ×3 · Токио ×4</p>
+</div><!-- /v1 -->
+
+
+<!-- ===== ВАРИАНТ 2 ===== -->
+<div id="v2" style="display:none">
+
+<span class="section-label lbl-tokyo">🗼 Токио</span>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">9 сен</div><div class="dw">вт</div></div>
+    <span class="icon">✈️</span>
+    <div class="dtitle">Прилёт в Токио · въезд №1</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Прилёт утром, заселение. Прогулка по Сибуя и Синдзюку.</p>
+    <div class="attr">
+      <div class="aname">Сибуя · Синдзюку</div>
+      <span class="ticket ticket-free">🎟 Вход свободный</span>
+      <div class="adesc">✨ Scramble Crossing, Starbucks с видом сверху, «Золотой Гай» с тесными барами на 5–6 человек.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/19658291/pexels-photo-19658291.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Shibuya">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">10 сен</div><div class="dw">ср</div></div>
+    <div class="dtitle">Токио, полный день</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Асакуса, Сэнсо-дзи, Skytree, Акихабара.</p>
+    <div class="attr">
+      <div class="aname">Сэнсо-дзи · Skytree · Акихабара</div>
+      <span class="ticket">🎟 Храм бесплатно · Skytree ~2100 ¥ · Акихабара свободно</span>
+      <div class="adesc">✨ Старейший храм Токио (628 г.), самая высокая башня Японии и мекка аниме — три иконы за один день.</div>
+      <div class="imgs">
+        <img src="https://cdn.pixabay.com/photo/2017/02/02/10/08/sensoji-2032400_640.jpg" alt="Senso-ji">
+        <img src="https://images.pexels.com/photos/30703814/pexels-photo-30703814.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Skytree">
+      </div>
+    </div>
+  </div>
+</div>
+
+<span class="section-label lbl-kansai">🍜 Кансай</span>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">11 сен</div><div class="dw">чт</div></div>
+    <span class="icon">🚅</span>
+    <div class="dtitle">Токио → Нагоя → Киото</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Синкансэн с остановкой в Нагое (~1ч 40мин от Токио). Успеете на 2–3 часа, затем электричка до Киото (~40мин).</p>
+    <div class="attr">
+      <div class="aname">Замок Нагоя</div>
+      <span class="ticket">🎟 500 ¥ (~350 ₽)</span>
+      <div class="adesc">✨ Один из величайших замков Японии (1612 г.) с золотыми дельфинами-кинтяку на крыше. Рядом — дворец Хонмару с аутентичными интерьерами эпохи Эдо.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/17654165/pexels-photo-17654165.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Japanese castle">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Музей Тойота · Toyota Commemorative Museum</div>
+      <span class="ticket">🎟 500 ¥ (~350 ₽) · пн закрыто</span>
+      <div class="adesc">✨ Уникальный музей в историческом здании первой ткацкой фабрики Тойода — там, где всё началось. Интерактивные залы: от ткацких станков XIX в. до современных роботизированных линий сборки автомобилей. Один из лучших промышленных музеев Японии.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/3532924/pexels-photo-3532924.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Nagoya street">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">12 сен</div><div class="dw">пт</div></div>
+    <div class="dtitle">Киото — храмы</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Фусими Инари, Арасияма, Кинкакудзи.</p>
+    <div class="attr">
+      <div class="aname">Фусими Инари</div>
+      <span class="ticket ticket-free">🎟 Вход свободный</span>
+      <div class="adesc">✨ Тысячи оранжевых тории, тропа 4 км вверх на гору Инари.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/5589991/pexels-photo-5589991.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Fushimi Inari">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Арасияма · Кинкакудзи</div>
+      <span class="ticket">🎟 Кинкакудзи: 500 ¥ · роща свободна</span>
+      <div class="adesc">✨ Бамбуковая роща и Золотой павильон — главные открытки Киото.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/18848739/pexels-photo-18848739.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Bamboo">
+        <img src="https://images.pexels.com/photos/356629/pexels-photo-356629.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Kinkakuji">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">13 сен</div><div class="dw">сб</div></div>
+    <div class="dtitle">Киото или Нара</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">На выбор: олени Нары и Тодайдзи, или Гинкакудзи и Философская тропа.</p>
+    <div class="attr">
+      <div class="aname">Нара — олени и Тодайдзи</div>
+      <span class="ticket">🎟 Тодайдзи 600 ¥ · олени бесплатно</span>
+      <div class="adesc">✨ 1200 оленей и самое большое деревянное здание мира с Буддой 15 м.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/3408348/pexels-photo-3408348.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Nara deer">
+        <img src="https://images.pexels.com/photos/15845939/pexels-photo-15845939.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Nara deer torii">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">14 сен</div><div class="dw">вс</div></div>
+    <div class="dtitle">Осака</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Замок, Дотомбори, уличная еда.</p>
+    <div class="attr">
+      <div class="aname">Замок Осака · Дотомбори</div>
+      <span class="ticket">🎟 Замок 600 ¥ · Дотомбори свободен</span>
+      <div class="adesc">✨ История XVI в. и гастрономический квартал с неоном — контраст эпох.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/4058530/pexels-photo-4058530.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Osaka Castle">
+        <img src="https://images.pexels.com/photos/30802662/pexels-photo-30802662.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Dotonbori">
+      </div>
+    </div>
+  </div>
+</div>
+
+<span class="section-label lbl-korea">🇰🇷 Корея</span>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">15 сен</div><div class="dw">пн</div></div>
+    <span class="icon">✈️</span>
+    <div class="dtitle">KIX → Сеул · выезд из Японии</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Рейс из Кансай в Инчхон, заселение. Вечером — Мёндон.</p>
+    <div class="attr">
+      <div class="aname">Мёндон · Первый вечер</div>
+      <span class="ticket ticket-free">🎟 Вход свободный</span>
+      <div class="adesc">✨ K-beauty шопинг, стрит-фуд и бренды. Попробуйте хотток и тток-ккочи.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/28494398/pexels-photo-28494398.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Seoul street">
+        <img src="https://images.pexels.com/photos/16395526/pexels-photo-16395526.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Seoul night">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">16 сен</div><div class="dw">вт</div></div>
+    <div class="dtitle">Сеул — дворцы</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Кёнбоккун, Букчон Ханок, Намсан.</p>
+    <div class="attr">
+      <div class="aname">Кёнбоккун · Букчон · Намсан</div>
+      <span class="ticket">🎟 Дворец 3000 вон (в ханбок — бесплатно) · Намсан 16 000 вон</span>
+      <div class="adesc">✨ Дворец 1395 г., деревня ханок на холмах и ночная панорама города с башни.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/11870589/pexels-photo-11870589.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Gyeongbokgung">
+        <img src="https://images.pexels.com/photos/36942555/pexels-photo-36942555.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Bukchon">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">17 сен</div><div class="dw">ср</div></div>
+    <div class="dtitle">ДМЗ + современный Сеул</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Утром — тур на ДМЗ (бронировать заранее!), вечером — Хондэ.</p>
+    <div class="attr">
+      <div class="aname">Тур на ДМЗ</div>
+      <span class="ticket">🎟 ~50–70 $ (~4500–6300 ₽) с гидом и транспортом · только организованный тур</span>
+      <div class="adesc">✨ Граница двух Корей: туннель №3, смотровая Дора, Пханмунджом. Без тура проехать невозможно — обязательна организованная группа.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/29831546/pexels-photo-29831546.jpeg?auto=compress&cs=tinysrgb&w=640" alt="DMZ area">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Хондэ вечером</div>
+      <span class="ticket ticket-free">🎟 Улицы свободны · бары от 10 000 вон</span>
+      <div class="adesc">✨ Молодёжный квартал Хонгик: стрит-арт, инди-музыка, клубы и кафе круглосуточно.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/29188029/pexels-photo-29188029.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Korea night">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">18 сен</div><div class="dw">чт</div></div>
+    <span class="icon">✈️</span>
+    <div class="dtitle">Сеул → Токио · въезд №2</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Возвращение в Японию. Второй въезд по визе double-entry. Заселение в Токио.</p>
+    <div class="attr">
+      <div class="aname">Утро: Намдэмун или Мёндон перед отлётом</div>
+      <span class="ticket ticket-free">🎟 Рынки свободны</span>
+      <div class="adesc">✨ Намдэмун — старейший рынок Сеула: специи, морепродукты, одежда. Идеально для последних сувениров.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/23106807/pexels-photo-23106807.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Seoul interior">
+      </div>
+    </div>
+  </div>
+</div>
+
+<span class="section-label lbl-finale">🌿 Токио, финал</span>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">19 сен</div><div class="dw">пт</div></div>
+    <div class="dtitle">Токио — стиль жизни</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Токио глубже: дизайн, мода, парки, кофе. Разные районы — разные вселенные.</p>
+    <div class="attr">
+      <div class="aname">Харадзюку · Такэсита-дори</div>
+      <span class="ticket ticket-free">🎟 Вход свободный</span>
+      <div class="adesc">✨ Мировая столица молодёжной моды: улица Такэсита с яркими стилями, сладким стрит-фудом (крепы, сахарная вата), бутиками и тематическими кафе. Пять минут от парка Ёёги.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/3532924/pexels-photo-3532924.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Tokyo colorful street">
+        <img src="https://images.pexels.com/photos/30961827/pexels-photo-30961827.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Tokyo night">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Омотэсандо · Shibuya Sky</div>
+      <span class="ticket">🎟 Shibuya Sky: 2000 ¥ (~1400 ₽) · Омотэсандо — свободен</span>
+      <div class="adesc">✨ Омотэсандо — токийские Елисейские поля с флагманами мировых брендов. Shibuya Sky — смотровая 229 м с панорамой 360° на весь Токио.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/29502545/pexels-photo-29502545.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Tokyo skyline">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">20 сен</div><div class="dw">сб</div></div>
+    <div class="dtitle">Хаконэ / вид на Фудзи</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Озеро Асиноко, онсэн.</p>
+    <div class="attr">
+      <div class="aname">Тур в Хаконэ · Фудзи</div>
+      <span class="ticket">🎟 Hakone Free Pass: ~6500 ¥ (~4500 ₽) на чел. · тур с гидом ~50–80 $</span>
+      <div class="adesc">✨ Классический вид — Фудзи над кальдерным озером Асиноко с красными тории. Сентябрь — высокий шанс увидеть вершину без облаков. Free Pass покрывает автобусы, фуникулёр и паром.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/30091614/pexels-photo-30091614.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Fuji Hakone">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">21 сен</div><div class="dw">вс</div></div>
+    <div class="dtitle">Камакура</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd">
+    <p class="day-desc">Великий Будда, Цуругаока Хатимангу.</p>
+    <div class="attr">
+      <div class="aname">Великий Будда · Котоку-ин</div>
+      <span class="ticket">🎟 300 ¥ (~200 ₽) · внутрь Будды +20 ¥</span>
+      <div class="adesc">✨ Бронзовый Будда 13,35 м (1252 г.) — один из главных символов Японии. Внутрь можно войти через небольшую дверцу в основании.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/33390904/pexels-photo-33390904.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Kamakura Great Buddha">
+        <img src="https://images.pexels.com/photos/15139149/pexels-photo-15139149.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Buddha Japan">
+      </div>
+    </div>
+    <div class="attr">
+      <div class="aname">Цуругаока Хатимангу</div>
+      <span class="ticket ticket-free">🎟 Вход свободный</span>
+      <div class="adesc">✨ Главный синтоистский храм Камакуры (1063 г.). Аллея из вишен и лотосовые пруды.</div>
+      <div class="imgs">
+        <img src="https://images.pexels.com/photos/9297099/pexels-photo-9297099.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Kamakura temple">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="day">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dd"><div class="dn">22 сен</div><div class="dw">пн</div></div>
+    <span class="icon">✈️</span>
+    <div class="dtitle">Вылет домой утром</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="day-bd"><p class="day-desc">Ранний выезд, tax free в аэропорту при предъявлении паспорта.</p></div>
+</div>
+
+<!-- БЮДЖЕТ V2 -->
+<span class="section-label lbl-budget">💴 Расчёт расходов</span>
+<div class="budget-section">
+  <div class="budget-hd" onclick="togBudget(this)">
+    <div class="dd"><div class="dn" style="font-size:20px">💴</div></div>
+    <div class="budget-title">Примерный бюджет · Вариант 2</div>
+    <div class="chev">⌄</div>
+  </div>
+  <div class="budget-body">
+    <p class="budget-intro">Курс: <strong>1 $ = 73 ₽</strong>, 1 ¥ ≈ 0.7 ₽. Отель ~50 $/ночь на номер, питание ~21 $/день на человека, 14 дней.</p>
+
+    <div style="display:flex;gap:4px;padding:8px 0 4px;border-bottom:1.5px solid var(--border);margin-bottom:8px">
+      <div style="flex:1;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase">Статья</div>
+      <div style="width:90px;font-size:11px;font-weight:600;color:#8b3a12;text-align:right;letter-spacing:.03em">Один</div>
+      <div style="width:100px;font-size:11px;font-weight:600;color:#2040a0;text-align:right;letter-spacing:.03em">Двое/чел.</div>
+      <div style="width:100px;font-size:11px;font-weight:600;color:var(--muted);text-align:right;letter-spacing:.03em">Двое итого</div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">✈️ Перелёты</div>
+      <div class="b-row3">
+        <div class="b-label">Москва → Токио<div class="b-sub">53 000 ₽ ÷ 2</div></div>
+        <div class="b-col solo">26 500 ₽</div>
+        <div class="b-col duo">26 500 ₽</div>
+        <div class="b-col total">53 000 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Осака → Сеул</div>
+        <div class="b-col solo">10 000 ₽</div>
+        <div class="b-col duo">10 000 ₽</div>
+        <div class="b-col total">20 000 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Сеул → Токио</div>
+        <div class="b-col solo">8 000 ₽</div>
+        <div class="b-col duo">8 000 ₽</div>
+        <div class="b-col total">16 000 ₽</div>
+      </div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">Итого перелёты</div>
+        <div class="b-col solo">44 500 ₽</div>
+        <div class="b-col duo">44 500 ₽</div>
+        <div class="b-col total">89 000 ₽</div>
+      </div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">🏨 Отели · 13 ночей · ~50 $/ночь</div>
+      <div class="b-row3">
+        <div class="b-label">Токио 2 ночи</div>
+        <div class="b-col solo">7 300 ₽</div>
+        <div class="b-col duo">3 650 ₽</div>
+        <div class="b-col total">7 300 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Киото 3 ночи</div>
+        <div class="b-col solo">10 950 ₽</div>
+        <div class="b-col duo">5 475 ₽</div>
+        <div class="b-col total">10 950 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Осака 1 ночь</div>
+        <div class="b-col solo">3 650 ₽</div>
+        <div class="b-col duo">1 825 ₽</div>
+        <div class="b-col total">3 650 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Сеул 3 ночи</div>
+        <div class="b-col solo">10 950 ₽</div>
+        <div class="b-col duo">5 475 ₽</div>
+        <div class="b-col total">10 950 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Токио финал 4 ночи</div>
+        <div class="b-col solo">14 600 ₽</div>
+        <div class="b-col duo">7 300 ₽</div>
+        <div class="b-col total">14 600 ₽</div>
+      </div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">Итого отели</div>
+        <div class="b-col solo">47 450 ₽</div>
+        <div class="b-col duo">23 725 ₽</div>
+        <div class="b-col total">47 450 ₽</div>
+      </div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">🍱 Питание · 21 $/день · 14 дней</div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">21 $ × 73 ₽ × 14 дней</div>
+        <div class="b-col solo">21 462 ₽</div>
+        <div class="b-col duo">21 462 ₽</div>
+        <div class="b-col total">42 924 ₽</div>
+      </div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">🚆 Транспорт на месте (на чел.)</div>
+      <div class="b-row3">
+        <div class="b-label">Синкансэн Токио→Нагоя→Киото<div class="b-sub">~14 500 ¥</div></div>
+        <div class="b-col solo">10 150 ₽</div>
+        <div class="b-col duo">10 150 ₽</div>
+        <div class="b-col total">20 300 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Метро+автобусы Япония<div class="b-sub">~1 500 ¥/день × 12 дн.</div></div>
+        <div class="b-col solo">12 600 ₽</div>
+        <div class="b-col duo">12 600 ₽</div>
+        <div class="b-col total">25 200 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Метро Сеул</div>
+        <div class="b-col solo">590 ₽</div>
+        <div class="b-col duo">590 ₽</div>
+        <div class="b-col total">1 180 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Hakone Free Pass (~6 500 ¥)</div>
+        <div class="b-col solo">4 550 ₽</div>
+        <div class="b-col duo">4 550 ₽</div>
+        <div class="b-col total">9 100 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Аэроэкспресс (~3 000 ¥)</div>
+        <div class="b-col solo">2 100 ₽</div>
+        <div class="b-col duo">2 100 ₽</div>
+        <div class="b-col total">4 200 ₽</div>
+      </div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">Итого транспорт</div>
+        <div class="b-col solo">29 990 ₽</div>
+        <div class="b-col duo">29 990 ₽</div>
+        <div class="b-col total">59 980 ₽</div>
+      </div>
+    </div>
+
+    <div class="b-group">
+      <div class="b-group-title">🎟 Достопримечательности (на чел.)</div>
+      <div class="b-row3">
+        <div class="b-label">Skytree + Shibuya Sky</div>
+        <div class="b-col solo">2 870 ₽</div>
+        <div class="b-col duo">2 870 ₽</div>
+        <div class="b-col total">5 740 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Замок Нагоя (500 ¥)</div>
+        <div class="b-col solo">350 ₽</div>
+        <div class="b-col duo">350 ₽</div>
+        <div class="b-col total">700 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Музей Тойота (500 ¥)</div>
+        <div class="b-col solo">350 ₽</div>
+        <div class="b-col duo">350 ₽</div>
+        <div class="b-col total">700 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Кинкакудзи + Тодайдзи + Замок Осака</div>
+        <div class="b-col solo">1 190 ₽</div>
+        <div class="b-col duo">1 190 ₽</div>
+        <div class="b-col total">2 380 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Кёнбоккун + Намсан + ДМЗ-тур</div>
+        <div class="b-col solo">5 815 ₽</div>
+        <div class="b-col duo">5 815 ₽</div>
+        <div class="b-col total">11 630 ₽</div>
+      </div>
+      <div class="b-row3">
+        <div class="b-label">Будда Камакура (300 ¥)</div>
+        <div class="b-col solo">210 ₽</div>
+        <div class="b-col duo">210 ₽</div>
+        <div class="b-col total">420 ₽</div>
+      </div>
+      <div class="b-row3 b-sum">
+        <div class="b-label">Итого достопримечательности</div>
+        <div class="b-col solo">10 785 ₽</div>
+        <div class="b-col duo">10 785 ₽</div>
+        <div class="b-col total">21 570 ₽</div>
+      </div>
+    </div>
+
+    <div class="budget-total">
+      <div style="display:flex;gap:4px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed #b8e0c8">
+        <div style="flex:1;font-size:12px;color:#2a7a50;font-weight:500">Итого</div>
+        <div style="width:90px;font-size:11px;color:#8b3a12;text-align:right;font-weight:500">Один</div>
+        <div style="width:100px;font-size:11px;color:#2040a0;text-align:right;font-weight:500">Двое/чел.</div>
+        <div style="width:100px;font-size:11px;color:#0a5a38;text-align:right;font-weight:500">Двое итого</div>
+      </div>
+      <div style="display:flex;gap:4px;align-items:baseline">
+        <div style="flex:1;font-size:13px;color:#0a5a38;font-weight:500">Все расходы</div>
+        <div style="width:90px;font-size:19px;font-weight:700;color:#8b3a12;text-align:right">154 000 ₽</div>
+        <div style="width:100px;font-size:19px;font-weight:700;color:#2040a0;text-align:right">130 000 ₽</div>
+        <div style="width:100px;font-size:19px;font-weight:700;color:#0a5a38;text-align:right">261 000 ₽</div>
+      </div>
+    </div>
+    <p class="budget-note">⚠️ Не включено: шопинг и сувениры, алкоголь, онсэн в Хаконэ (~3 000 ¥), страховка (~3 000–5 000 ₽), виза. Питание — средний уровень (рамен, донбури, кафе). Двое/чел. = отель пополам, перелёты раздельно.</p>
+  </div>
+</div>
+
+<p class="footer-note">Ночёвки: Токио ×2 · Киото ×3 · Осака ×1 · Сеул ×3 · Токио ×4</p>
+</div><!-- /v2 -->
+
+</div><!-- /container -->
+
+<script>
+function tog(hd) {
+  var bd = hd.nextElementSibling;
+  var ch = hd.querySelector('.chev');
+  bd.classList.toggle('open');
+  ch.classList.toggle('open', bd.classList.contains('open'));
+}
+function togBudget(hd) {
+  var bd = hd.nextElementSibling;
+  var ch = hd.querySelector('.chev');
+  bd.classList.toggle('open');
+  ch.classList.toggle('open', bd.classList.contains('open'));
+}
+function switchTab(n, btn) {
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('v1').style.display = n === 1 ? 'block' : 'none';
+  document.getElementById('v2').style.display = n === 2 ? 'block' : 'none';
+}
+</script>
+</body>
+</html>
